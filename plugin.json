@@ -1,0 +1,30 @@
+{
+  "id": "qwenpaw-resource-monitor",
+  "name": "资源监控",
+  "version": "0.0.1",
+  "description": "本地资源视图：实时监控服务器 CPU / 内存 / 磁盘 / 网络 / 进程 / GPU 占用。概览卡片 + 实时折线图（CPU/内存 2 分钟趋势）+ 磁盘分区进度条 + 进程 Top 榜（可切换按 CPU/内存排序）+ 系统信息。数据经插件后端 psutil 采集，零系统包依赖，只读不写入。自动刷新间隔可选 1s/2s/5s/10s/暂停。应用启动入口：应用 → 资源监控 📊",
+  "author": "archigram",
+  "license": "Apache-2.0",
+  "type": "app",
+  "qwenpaw_version": {
+    "min": "2.0.0",
+    "max": "2.1.0"
+  },
+  "entry": {
+    "backend": "plugin.py",
+    "frontend": "ui/index.js"
+  },
+  "permissions": [
+    "workspace.read"
+  ],
+  "meta": {
+    "category": "developer-tools",
+    "icon": "📊",
+    "pawapp": {
+      "icon": "📊",
+      "category": "developer-tools",
+      "entry_page": "/apps/qwenpaw-resource-monitor",
+      "launch_scope": "page"
+    }
+  }
+}
