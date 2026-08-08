@@ -1,4 +1,4 @@
-# 📊 资源监控（qwenpaw-resource-monitor）
+# 📊 资源监控（qwenpaw-resource-monitor） v0.1.0
 
 QwenPaw 本地资源视图插件：实时展示**服务器本地资源占用**，纯只读监控。
 

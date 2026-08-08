@@ -1,5 +1,5 @@
 /**
- * QwenPaw 本地资源监控 v0.0.1 — 前端 GUI
+ * QwenPaw 本地资源监控 v0.1.0 — 前端 GUI
  * （qwenpaw-resource-monitor 插件）
  *
  * 展示服务器本地资源占用：
@@ -24,7 +24,7 @@
 
   var PLUGIN_ID = "qwenpaw-resource-monitor";
   var PLUGIN_NAME = "资源监控";
-  var VERSION = "0.0.1";
+  var VERSION = "0.1.0";
   var API = "/api/" + PLUGIN_ID;
   var MAX_HISTORY = 60; // 60 点 × 2s ≈ 2 分钟窗口
 
@@ -426,13 +426,11 @@
           "数据经插件后端 psutil 采集 · 只读监控 · 每秒自动刷新")));
   }
 
-  // ---------- 注册三件套 ----------
+  // ---------- 注册（只注册应用中心入口，不注册侧边栏菜单） ----------
   if (QP.registerRoutes) {
     try { QP.registerRoutes(PLUGIN_ID, [{ path: "/apps/" + PLUGIN_ID, component: App, label: PLUGIN_NAME, icon: "📊" }]); } catch (e) { console.error(e); }
   }
-  if (QP.menu && QP.menu.add) {
-    try { QP.menu.add(PLUGIN_ID, [{ id: PLUGIN_ID, location: "primary.settings", label: PLUGIN_NAME, icon: "📊", route: "/apps/" + PLUGIN_ID, order: 0 }]); } catch (e) { console.error(e); }
-  }
+  // 注意：不再注册 QP.menu.add —— 用户反馈侧边栏"资源监控"菜单无用，去掉
   if (QP.route && QP.route.add) {
     try { QP.route.add(PLUGIN_ID, [{ id: PLUGIN_ID, path: "/plugin/" + PLUGIN_ID, component: App }]); } catch (e) { console.error(e); }
   }

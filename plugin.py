@@ -1,5 +1,5 @@
 """
-QwenPaw 本地资源监控插件（qwenpaw-resource-monitor）v0.0.1
+QwenPaw 本地资源监控插件（qwenpaw-resource-monitor）v0.1.0
 
 在 QwenPaw 界面内实时展示**服务器本地资源占用**：CPU / 内存 / 磁盘 /
 网络 / 进程 / GPU，纯只读监控，不做任何写操作。
@@ -36,7 +36,7 @@ from qwenpaw.pawapp import PawApp
 
 logger = logging.getLogger(__name__)
 
-PLUGIN_VERSION = "0.0.1"
+PLUGIN_VERSION = "0.1.0"
 PLUGIN_NAME = "资源监控"
 PLUGIN_ID = "qwenpaw-resource-monitor"
 
