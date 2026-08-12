@@ -4,7 +4,7 @@ QwenPaw 本地资源视图插件：实时展示**服务器本地资源占用**�
 
 应用启动入口：**应用 → 资源监控 📊**
 
-![qwenpaw-resource-monitor 预览](qwenpaw-resource-monitor-preview.png)
+![qwenpaw-resource-monitor 预览](https://raw.githubusercontent.com/chcsyf/qwenpaw-resource-monitor/main/qwenpaw-resource-monitor-preview.png)
 
 ## 功能
 
@@ -55,7 +55,7 @@ qwenpaw-resource-monitor/
 
 ## 变更记录
 
-见 [CHANGELOG.md](./CHANGELOG.md)。
+见 [CHANGELOG.md](https://github.com/chcsyf/qwenpaw-resource-monitor/blob/main/CHANGELOG.md)。
 
 ## 已知限制
 
