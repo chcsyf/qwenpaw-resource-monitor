@@ -1,5 +1,14 @@
 # 变更记录
 
+## v0.1.1 - 2026-09-17
+
+- **修复：`GET /snapshot` 阻塞事件循环**
+  - 根因：`get_snapshot()` 是 `async def`，却直接调用同步的 `_snapshot()`，其中包含
+    `subprocess.run(["nvidia-smi"], timeout=2)`、`psutil.disk_usage()`（NAS/NFS 挂载点上
+    耗时不可控）、`psutil.process_iter()` 全进程扫描。前端默认每 1~5s 轮询一次，
+    等于周期性冻结整个 QwenPaw 服务。
+  - 修复：`return await asyncio.to_thread(_snapshot)`（新增 `import asyncio`）。
+
 ## v0.1.0（2026-08-08）
 
 正式版本（0.0.1 初始版上传验证通过后发布）：

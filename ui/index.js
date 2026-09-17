@@ -24,7 +24,7 @@
 
   var PLUGIN_ID = "qwenpaw-resource-monitor";
   var PLUGIN_NAME = "资源监控";
-  var VERSION = "0.1.0";
+  var VERSION = "0.1.1";
   var API = "/api/" + PLUGIN_ID;
   var MAX_HISTORY = 60; // 60 点 × 2s ≈ 2 分钟窗口
 

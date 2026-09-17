@@ -22,6 +22,7 @@ QwenPaw 本地资源监控插件（qwenpaw-resource-monitor）v0.1.0
     前端可再按内存排序展示。
   - 磁盘分区排除伪文件系统（proc/sysfs/devtmpfs 等），根分区 overlay 保留。
 """
+import asyncio
 import logging
 import os
 import platform
@@ -36,7 +37,7 @@ from qwenpaw.pawapp import PawApp
 
 logger = logging.getLogger(__name__)
 
-PLUGIN_VERSION = "0.1.0"
+PLUGIN_VERSION = "0.1.1"
 PLUGIN_NAME = "资源监控"
 PLUGIN_ID = "qwenpaw-resource-monitor"
 
@@ -320,9 +321,15 @@ async def get_status():
 
 @router.get("/snapshot")
 async def get_snapshot():
-    """全量资源快照。"""
+    """全量资源快照。
+
+    _snapshot() 内部是同步阻塞调用：subprocess.run(["nvidia-smi"], timeout=2)、
+    psutil.disk_usage（NFS/NAS 挂载点上耗时不可控）、psutil.process_iter 全进程扫描。
+    前端默认每 1~5s 轮询一次，直接在事件循环线程执行会反复冻结整个 QwenPaw 服务，
+    必须丢到线程池（asyncio.to_thread）。
+    """
     try:
-        return _snapshot()
+        return await asyncio.to_thread(_snapshot)
     except Exception as exc:  # noqa: BLE001
         logger.warning("[qwenpaw-resource-monitor] snapshot failed: %s", exc)
         return {"error": str(exc)}
